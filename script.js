@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    SUSTAINEO - Deep-Tech Landing Page
    script.js - Interactions, Animations & Particle System
    ============================================================ */
@@ -496,18 +496,7 @@
   });
 }());
 
-/* ============================================================
-   17. PAGE LOAD FADE-IN
-   ============================================================ */
-document.addEventListener('DOMContentLoaded', () => {
-  document.body.style.opacity = '0';
-  document.body.style.transition = 'opacity 0.6s ease';
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      document.body.style.opacity = '1';
-    });
-  });
-});
+
 
 /* ============================================================
    18. TECH SVG SCHEMATIC - Container Parallax

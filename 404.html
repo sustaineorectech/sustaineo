@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Not Found - Sustaineo</title>
+  <script>
+    const routes = [
+      '/home',
+      '/theproblem',
+      '/technology',
+      '/metrics',
+      '/materials',
+      '/feedstockstreams',
+      '/whysustaineo',
+      '/industries',
+      '/r&d',
+      '/r%26d',
+      '/impact',
+      '/partnerwithus'
+    ];
+    const path = window.location.pathname;
+    const target = routes.includes(path) ? `/?route=${encodeURIComponent(path)}` : '/';
+    window.location.replace(target);
+  </script>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      font-family: Arial, sans-serif;
+      color: #1C2820;
+      background: #F5F1EA;
+    }
+    a { color: #2A5E42; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Page not found</h1>
+    <p>Redirecting to <a href="./">Sustaineo</a>.</p>
+  </main>
+</body>
+</html>

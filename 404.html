@@ -4,30 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Page Not Found - Sustaineo</title>
-  <script>
-    const routes = [
-      '/home',
-      '/theproblem',
-      '/technology',
-      '/metrics',
-      '/materials',
-      '/feedstockstreams',
-      '/whysustaineo',
-      '/industries',
-      '/r&d',
-      '/r%26d',
-      '/impact',
-      '/partnerwithus'
-    ];
-    var path = window.location.pathname;
-    var basePath = path.substring(0, path.lastIndexOf('/') + 1);
-    var routePath = path;
-    if (basePath !== '/' && path.startsWith(basePath)) {
-      routePath = '/' + path.substring(basePath.length);
-    }
-    const target = routes.includes(routePath) ? basePath + '?route=' + encodeURIComponent(routePath) : basePath;
-    window.location.replace(target);
-  </script>
+  <meta http-equiv="refresh" content="0; url=./" />
   <style>
     body {
       min-height: 100vh;

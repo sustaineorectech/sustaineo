@@ -1,6 +1,6 @@
 var CACHE_NAME = 'sustaineo-v1';
 var urlsToCache = [
-  '/',
+  '.',
   'style.css',
   'script.js',
   'logo-transparent.png',

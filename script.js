@@ -26,9 +26,28 @@ const ROUTES_BY_SECTION = Object.entries(SECTION_ROUTES).reduce((routes, [path, 
   return routes;
 }, {});
 
+function getBasePath() {
+  var base = document.querySelector('base');
+  return base ? base.getAttribute('href').replace(/\/+$/, '') || '/' : '/';
+}
+
+function fullPath(route) {
+  var base = getBasePath();
+  return base === '/' ? route : base + route;
+}
+
+function stripBase(path) {
+  var base = getBasePath();
+  if (base !== '/' && path.startsWith(base)) {
+    path = path.substring(base.length) || '/';
+  }
+  return path;
+}
+
 function getRoutePath(url) {
   try {
-    return new URL(url, window.location.origin).pathname;
+    var path = new URL(url, window.location.origin).pathname;
+    return stripBase(path);
   } catch {
     return '';
   }
@@ -50,7 +69,7 @@ function scrollToSection(sectionId, updateUrl) {
 
   if (updateUrl) {
     var route = ROUTES_BY_SECTION[sectionId] || '/home';
-    window.history.replaceState({ sectionId }, '', route);
+    window.history.replaceState({ sectionId }, '', fullPath(route));
   }
 
   return true;
@@ -169,11 +188,11 @@ function scrollToSection(sectionId, updateUrl) {
   // Handle initial route from URL hash / 404 redirect
   var params = new URLSearchParams(window.location.search);
   var redirectedRoute = params.get('route');
-  var currentPath = redirectedRoute || window.location.pathname;
+  var currentPath = stripBase(redirectedRoute || window.location.pathname);
   var initialSection = SECTION_ROUTES[currentPath];
 
   if (initialSection && currentPath !== '/') {
-    if (redirectedRoute) window.history.replaceState({ sectionId: initialSection }, '', currentPath);
+    if (redirectedRoute) window.history.replaceState({ sectionId: initialSection }, '', fullPath(currentPath));
     setTimeout(function() {
       var el = document.getElementById(initialSection);
       if (el) {
@@ -400,9 +419,11 @@ function scrollToSection(sectionId, updateUrl) {
     6. ROUTE NAVIGATION (anchor clicks + popstate)
     ============================================================ */
 (function initRouteNav() {
-  document.querySelectorAll('a[href^="/"], a[href^="#"]').forEach(anchor => {
+  document.querySelectorAll('a[href]').forEach(function(anchor) {
+    var href = anchor.getAttribute('href');
+    if (!href || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel') || href.startsWith('javascript')) return;
+
     anchor.addEventListener('click', function(e) {
-      const href = this.getAttribute('href');
       const sectionId = href.startsWith('#')
         ? href.slice(1)
         : SECTION_ROUTES[getRoutePath(href)];
@@ -415,7 +436,7 @@ function scrollToSection(sectionId, updateUrl) {
   });
 
   window.addEventListener('popstate', () => {
-    const sectionId = SECTION_ROUTES[window.location.pathname] || 'hero';
+    const sectionId = SECTION_ROUTES[stripBase(window.location.pathname)] || 'hero';
     scrollToSection(sectionId, false);
   });
 }());
@@ -450,7 +471,7 @@ function scrollToSection(sectionId, updateUrl) {
    ============================================================ */
 (function initActiveSection() {
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a[href^="/"]');
+  const navLinks = document.querySelectorAll('.nav-links a');
 
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {

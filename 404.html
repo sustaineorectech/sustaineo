@@ -19,8 +19,13 @@
       '/impact',
       '/partnerwithus'
     ];
-    const path = window.location.pathname;
-    const target = routes.includes(path) ? `/?route=${encodeURIComponent(path)}` : '/';
+    var path = window.location.pathname;
+    var basePath = path.substring(0, path.lastIndexOf('/') + 1);
+    var routePath = path;
+    if (basePath !== '/' && path.startsWith(basePath)) {
+      routePath = '/' + path.substring(basePath.length);
+    }
+    const target = routes.includes(routePath) ? basePath + '?route=' + encodeURIComponent(routePath) : basePath;
     window.location.replace(target);
   </script>
   <style>

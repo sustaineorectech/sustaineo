@@ -14,6 +14,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' https:; connect-src 'self'; font-src 'self' data:; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; object-src 'none'" />
   <base href="/" />
+  <script>document.querySelector('base').href = window.location.pathname.replace(/[^/]*$/, '') || '/';</script>
   <link rel="canonical" href="https://sustaineotech.com/" />
   <meta property="og:title" content="Sustaineo - Critical Materials Recovery Technology" />
   <meta property="og:description" content="Advanced Zero-Liquid-Discharge technologies transforming e-waste, solar and wind waste into strategic resources." />
@@ -63,7 +64,7 @@
      NAVIGATION
      ============================================================ -->
 <nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
-  <a href="/home" class="nav-logo" aria-label="Sustaineo Home">
+  <a href="home" class="nav-logo" aria-label="Sustaineo Home">
     <img src="logo-transparent.png" alt="Sustaineo Recycling Technologies" width="42" height="42" />
     <div class="nav-logo-text">
       <span class="nav-logo-name">Sustaineo</span>
@@ -71,12 +72,12 @@
     </div>
   </a>
   <ul class="nav-links">
-    <li><a href="/theproblem">The Problem</a></li>
-    <li><a href="/technology">Technology</a></li>
-    <li><a href="/materials">Materials</a></li>
-    <li><a href="/industries">Industries</a></li>
-    <li><a href="/r%26d">R&amp;D</a></li>
-    <li><a href="/partnerwithus" class="nav-cta">Partner With Us</a></li>
+    <li><a href="theproblem">The Problem</a></li>
+    <li><a href="technology">Technology</a></li>
+    <li><a href="materials">Materials</a></li>
+    <li><a href="industries">Industries</a></li>
+    <li><a href="r%26d">R&amp;D</a></li>
+    <li><a href="partnerwithus" class="nav-cta">Partner With Us</a></li>
   </ul>
   <button class="nav-hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -86,12 +87,12 @@
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
   <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
-  <a href="/theproblem"    id="mob-problem">The Problem</a>
-  <a href="/technology" id="mob-tech">Technology</a>
-  <a href="/materials"  id="mob-mats">Materials</a>
-  <a href="/industries" id="mob-ind">Industries</a>
-  <a href="/r%26d" id="mob-rnd">R&amp;D</a>
-  <a href="/partnerwithus"    id="mob-contact">Partner With Us</a>
+  <a href="theproblem"    id="mob-problem">The Problem</a>
+  <a href="technology" id="mob-tech">Technology</a>
+  <a href="materials"  id="mob-mats">Materials</a>
+  <a href="industries" id="mob-ind">Industries</a>
+  <a href="r%26d" id="mob-rnd">R&amp;D</a>
+  <a href="partnerwithus"    id="mob-contact">Partner With Us</a>
 </div>
 
 <div id="smooth-wrapper">
@@ -120,32 +121,32 @@
     </p>
 
     <div class="hero-actions">
-      <a href="/technology" class="btn-primary" id="heroCTATech">
+      <a href="technology" class="btn-primary" id="heroCTATech">
         <span>Explore Technology</span>
         <span aria-hidden="true">→</span>
       </a>
-      <a href="/partnerwithus" class="btn-outline" id="heroCTAPartner">
+      <a href="partnerwithus" class="btn-outline" id="heroCTAPartner">
         <span>Partner With Us</span>
       </a>
     </div>
 
     <nav class="hero-explorer" aria-label="Explore Sustaineo">
-      <a href="/technology" class="explorer-link">
+      <a href="technology" class="explorer-link">
         <span class="explorer-kicker">01</span>
         <span class="explorer-title">Technology</span>
         <span class="explorer-desc">Green solvometallurgy and ZLD recovery process</span>
       </a>
-      <a href="/materials" class="explorer-link">
+      <a href="materials" class="explorer-link">
         <span class="explorer-kicker">02</span>
         <span class="explorer-title">Materials</span>
         <span class="explorer-desc">Critical metals, composites and polymers</span>
       </a>
-      <a href="/industries" class="explorer-link">
+      <a href="industries" class="explorer-link">
         <span class="explorer-kicker">03</span>
         <span class="explorer-title">Industries</span>
         <span class="explorer-desc">Electronics, solar, wind, OEM and utility partners</span>
       </a>
-      <a href="/partnerwithus" class="explorer-link">
+      <a href="partnerwithus" class="explorer-link">
         <span class="explorer-kicker">04</span>
         <span class="explorer-title">Partnership</span>
         <span class="explorer-desc">Licensing, investment and research collaboration</span>
@@ -940,11 +941,11 @@
       </div>
     </div>
     <ul class="footer-links" aria-label="Footer navigation">
-      <li><a href="/technology">Technology</a></li>
-      <li><a href="/materials">Materials</a></li>
-      <li><a href="/industries">Industries</a></li>
-    <li><a href="/r%26d">R&amp;D</a></li>
-      <li><a href="/partnerwithus">Contact</a></li>
+      <li><a href="technology">Technology</a></li>
+      <li><a href="materials">Materials</a></li>
+      <li><a href="industries">Industries</a></li>
+    <li><a href="r%26d">R&amp;D</a></li>
+      <li><a href="partnerwithus">Contact</a></li>
     </ul>
     <div class="footer-copy">
       &copy; 2026 Sustaineo Recycling Technologies Pvt. Ltd.<br />
@@ -967,7 +968,7 @@
 <script src="script.js" defer></script>
 <script>
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js').catch(function(err) {
+  navigator.serviceWorker.register('sw.js').catch(function(err) {
     console.warn('SW registration failed:', err);
   });
 }
